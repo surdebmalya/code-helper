@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}
+Code Helper
+{% endblock %}
+
+{% block body %}
+{% if topic_or_question == 'questions' %}
+<section class="py-24 bg-gray-900">
+    <div class="max-w-3xl px-8 mx-auto lg:px-16">
+        <h2 class="mb-2 text-xl font-bold text-white md:text-3xl">
+            Leetcode questions on {{topic_name}}
+        </h2>
+
+        <div class="relative mt-2 mt-8">
+            <!-- Question -->
+            {% for topic_question_name in topic_question_names %}
+            <div x-data="{ show: false }" class="relative overflow-hidden text-white select-none">
+                <a href="{{topic_name}}/{{topic_question_name}}">
+                    <h4 @click="show=!show"
+                        class="flex items-center justify-between py-5 text-lg font-medium text-gray-100 cursor-pointer sm:text-xl hover:text-white">
+                        <span>
+                            {{proper_topic_question_names[topic_question_name]}}
+                        </span>
+                        <svg class="w-6 h-6 text-green-400 transition-all duration-200 ease-out transform rotate-0 fill-current"
+                            :class="{ '-rotate-45' : show }" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </h4>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<div class="py-2 bg-gray-900"></div>
+{% elif topic_or_question == 'topics' %}
+<section class="py-24 bg-gray-900">
+    <div class="max-w-3xl px-8 mx-auto lg:px-16">
+        <h2 class="mb-2 text-xl font-bold text-white md:text-3xl">
+            Leetcode Topics
+        </h2>
+
+        <div class="relative mt-2 mt-8">
+            <!-- Topics -->
+            {% for topic_name in topic_names %}
+            <div x-data="{ show: false }" class="relative overflow-hidden text-white select-none">
+                <a href="leetcode/{{topic_name}}">
+                    <h4 @click="show=!show"
+                        class="flex items-center justify-between py-5 text-lg font-medium text-gray-100 cursor-pointer sm:text-xl hover:text-white">
+                        <span>
+                            {{proper_names[topic_name]}}
+                        </span>
+                        <svg class="w-6 h-6 text-green-400 transition-all duration-200 ease-out transform rotate-0 fill-current"
+                            :class="{ '-rotate-45' : show }" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </h4>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<div class="py-2 bg-gray-900"></div>
+{% endif %}
+{% endblock %}

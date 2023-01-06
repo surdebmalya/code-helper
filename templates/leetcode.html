@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}
+{{question_title}}
+{% endblock %}
+
+{% block body %}
+<section class="w-full py-16 bg-black">
+    <div class="relative max-w-5xl px-12 mx-auto xl:px-0">
+        <p class="text-white">
+            <a href="/leetcode">Topics</a>
+        </p>
+        <div class="my-5"></div>
+        <!-- Question Title -->
+        <h2 class="font-bold text-white" style="font-size: xx-large">
+            {{question_id}} : {{question_title}}
+            <a href={{question_link}} target="_blank">
+                <i class="fa fa-external-link-square"></i>
+            </a>
+        </h2>
+        <div class="my-5"></div>
+        {% if question_level == 'Hard' %}
+        <span
+            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-red-600 bg-red-200 uppercase last:mr-0 mr-1">
+            Hard
+        </span>
+        {% elif question_level == 'Medium' %}
+        <span
+            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-yellow-600 bg-yellow-200 uppercase last:mr-0 mr-1">
+            Medium
+        </span>
+        {% else %}
+        <span
+            class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-green-600 bg-green-200 uppercase last:mr-0 mr-1">
+            Easy
+        </span>
+        {% endif %}
+        <div class="my-20 border border-gray-800"></div>
+
+        <!-- Question Statement -->
+        <style>
+            pre {
+                overflow-x: auto;
+                white-space: pre-wrap;
+                white-space: -moz-pre-wrap;
+                white-space: -pre-wrap;
+                white-space: -o-pre-wrap;
+                word-wrap: break-word;
+            }
+        </style>
+        <pre class="text-gray-300" style="font-size:large" id="coding-question">
+            {{question}}
+        </pre>
+
+        <!-- Question Solution -->
+        <h2 class="font-bold text-white" style="font-size: xx-large">
+            Solution in C++
+        </h2>
+        <div class="my-20 border border-gray-800"></div>
+        <pre class="text-gray-300" style="font-size:large" id="show-json-from-git"></pre>
+        <script>
+            var url = `{{solution_code_github_link}}`;
+            fetch(url)
+                .then(res => res.text())
+                .then((out) => {
+                    document.getElementById("show-json-from-git").innerText = out
+                })
+                .catch(err => { throw err });
+        </script>
+    </div>
+</section>
+<div class="py-6 bg-black"></div>
+{% endblock %}
