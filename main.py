@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
-import requests, random
+import requests
 from bs4 import BeautifulSoup as bs
+from repl_db import *
 
 # Configuration files
 app = Flask(__name__)
