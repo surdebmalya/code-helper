@@ -17,6 +17,19 @@ def create_account(email):
         except:
             return 500
 
+# print all the elements of the database
+def print_db():
+    all_keys = db.keys()
+    for each_key in all_keys:
+        print(db[each_key])
+
+# clear full database
+def clear():
+    all_keys = db.keys()
+    for each_key in all_keys:
+        del db[each_key]
+
+# getting all email addresses
 def get_all_emails():
     all_keys = db.keys()
     final_email_list = []

@@ -123,4 +123,5 @@ def thanks():
 
 # Driver code starts from here
 if __name__ == '__main__':
+    print_db()
     app.run(host='0.0.0.0', port=5000)
