@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for
-import requests
+import requests, random
 from bs4 import BeautifulSoup as bs
 
 # Configuration files
 app = Flask(__name__)
+app.config["DEBUG"] = True
 
 # Landing page
 @app.route('/')
@@ -107,5 +108,8 @@ def error():
     return render_template('error.html')
 
 # Driver code starts from here
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+# if __name__ == "__main__":
+#     app.run()
