@@ -1,6 +1,9 @@
 from replit import db
 
+# 200: successfully email is listed
 # 409: email id already present
+
+# 500: internal server erro
 
 # create new entry
 def create_account(email):
@@ -8,7 +11,11 @@ def create_account(email):
         docs = db[email]
         return 409
     except:
-	    db[email] = {'email': email}
+        try:
+            db[email] = {'email': email}
+            return 200
+        except:
+            return 500
 
 def get_all_emails():
     all_keys = db.keys()

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 import requests
 from bs4 import BeautifulSoup as bs
 from repl_db import *
@@ -99,18 +99,28 @@ def videos():
     return render_template('video-content.html')
 
 # Subscription backend
-@app.route('/subscribe')
+@app.route('/subscribe', methods=["POST", "GET"])
 def subscribe():
-    pass
+    if request.method == 'POST':
+        email = request.form['email'].replace(' ', '')
+        response = create_account(email)
+        if response == 200 or 409:
+            return render_template('thanks.html')
+        else:
+            return render_template('error.html')
+    else:
+        return redirect(url_for('index'))
 
 # Error page rendering
 @app.route('/error')
 def error():
     return render_template('error.html')
 
+# Thank you page
+@app.route('/thanks')
+def thanks():
+    return render_template('thanks.html')
+
 # Driver code starts from here
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-# if __name__ == "__main__":
-#     app.run()
