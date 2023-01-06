@@ -24,7 +24,7 @@ def print_db():
         print(db[each_key]["email"])
 
 # clear full database
-def clear():
+def clear_db():
     all_keys = db.keys()
     for each_key in all_keys:
         del db[each_key]
