@@ -105,6 +105,7 @@ def subscribe():
         email = request.form['email'].replace(' ', '')
         response = create_account(email)
         if response == 200 or 409:
+            print_db()
             return render_template('thanks.html')
         else:
             return render_template('error.html')
