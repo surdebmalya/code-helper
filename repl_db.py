@@ -21,7 +21,7 @@ def create_account(email):
 def print_db():
     all_keys = db.keys()
     for each_key in all_keys:
-        print(db[each_key])
+        print(db[each_key]["email"])
 
 # clear full database
 def clear():
