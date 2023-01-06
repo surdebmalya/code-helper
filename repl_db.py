@@ -3,7 +3,7 @@ from replit import db
 # 200: successfully email is listed
 # 409: email id already present
 
-# 500: internal server erro
+# 500: internal server error
 
 # create new entry
 def create_account(email):
